@@ -1,0 +1,46 @@
+<!--
+Created by: shepardcmndr
+Date: 09.07.2020
+Comments:
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <title>Add Question</title>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h3>Add new question:</h3>
+    <hr>
+    <form action="#" th:action="@{/questions/addQuestion}"
+          th:object="${question}" method="post">
+        <textarea class="form-control mb-4 col-8" rows="3"
+                  th:field="*{questionText}" placeholder="Question"></textarea>
+        <textarea class="form-control mb-4 col-8" rows="5"
+                  th:field="*{answer}" placeholder="Answer"></textarea>
+        <!--<input type="text" th:field="*{questionText}" placeholder="Question"
+               class="form-control mb-4 col-8">
+        <input type="text" th:field="*{answer}" placeholder="Answer"
+               class="form-control mb-4 col-8">-->
+        <div class="form-group row">
+            <label for="difficulty" class="col-sm-1 mr-4 col-form-label">Difficulty:</label>
+            <input type="text" th:field="*{difficulty}" id="difficulty"
+                   class="form-control mb-4 col-4">
+        </div>
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+        <hr>
+        <a th:href="@{/questions/listQuestions}">Back to List</a>
+    </form>
+</div>
+</body>
+</html>

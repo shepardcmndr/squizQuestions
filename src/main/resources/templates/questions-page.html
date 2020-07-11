@@ -1,0 +1,63 @@
+<!--
+Created by: shepardcmndr
+Date: 09.07.2020
+Comments:
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <title>Questions</title>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h3>All Questions</h3>
+    <hr>
+    <a th:href="@{/questions/addQuestion}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Question
+    </a>
+    <table class="table table-bordered table-stripped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Question</th>
+            <th>Answer</th> <!--TODO Replace section to Question page-->
+            <th>Difficulty</th>
+            <th>Date</th> <!--TODO Replace section to Question page-->
+            <!--<th>Author</th> TODO Add Author column when filed will be added to Entity-->
+            <th>Tags</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="question : ${questions}">
+            <td th:text="${question.getQuestionText()}"></td>
+            <td th:text="${question.getAnswer()}"></td>
+            <td th:text="${question.getDifficulty()}"></td>
+            <td th:text="${question.getCreationDate()}"></td>
+            <td th:text="${question.getTags()}"></td>
+            <td class="text-center">
+                <a th:href="@{/questions/showFormForUpdate(questionId=${question.getQuestionId()})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+                <a th:href="@{/questions/deleteQuestion(questionId=${question.getQuestionId()})}"
+                   class="btn btn-outline-secondary btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
