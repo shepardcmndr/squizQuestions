@@ -39,8 +39,7 @@ public class CentralController {
 
     @PostMapping("/addQuestion")
     public String addQuestion(@ModelAttribute(name = "question") Question question) {
-        questionService.createQuestion(question);
-
+        questionService.saveQuestion(question);
         return "redirect:/questions/listQuestions";
     }
 

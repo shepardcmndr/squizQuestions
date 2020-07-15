@@ -54,6 +54,14 @@ public class Question {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 
+    public void updateQuestion(Question question) {
+        this.setQuestionText(question.getQuestionText());
+        this.setAnswer(question.getAnswer());
+        this.setDifficulty(question.getDifficulty());
+        this.setCreationDate(question.getCreationDate());
+        this.setTags(question.getTags());
+    }
+
     @Override
     public String toString() {
         return "Question [" +
@@ -71,7 +79,7 @@ public class Question {
         this.answer = answer;
         this.picsAddress = picsAddress;
         this.difficulty = difficulty;
-        this.creationDate = creationDate;
+        this.creationDate = new Date();
     }
 
     public Question() {

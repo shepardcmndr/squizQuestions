@@ -24,6 +24,7 @@ Comments:
     <hr>
     <form action="#" th:action="@{/questions/addQuestion}"
           th:object="${question}" method="post">
+        <input type="hidden" th:field="*{questionId}" />
         <textarea class="form-control mb-4 col-8" rows="3"
                   th:field="*{questionText}" placeholder="Question"></textarea>
         <textarea class="form-control mb-4 col-8" rows="5"

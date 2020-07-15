@@ -26,9 +26,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question createQuestion(Question question) {
-        question.setCreationDate(new Date());
-        return questionRepository.save(question);
+    public void saveQuestion(Question question) {
+        questionRepository.save(question);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question getQuestionByID(long id) {
-        Optional<Question> questionOptional = questionRepository.findById((long) id);
+        Optional<Question> questionOptional = questionRepository.findById(id);
         Question question = null;
         if (questionOptional.isPresent()) {
             question = questionOptional.get();
@@ -52,12 +51,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question updateQuestion(Question question) {
-        return questionRepository.save(question);
-    }
-
-    @Override
     public void deleteQuestionByID(long id) {
-        questionRepository.deleteById((long) id);
+        questionRepository.deleteById(id);
     }
 }
