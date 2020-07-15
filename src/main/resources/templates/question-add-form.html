@@ -36,12 +36,8 @@ Comments:
         <div class="form-group row">
             <label for="difficulty" class="col-sm-1 mr-4 col-form-label">Difficulty:</label>
             <input type="text" th:field="*{difficulty}" id="difficulty"
-                   class="form-control mb-4 col-1">
+                   class="form-control mb-4 col-4">
         </div>
-        <!--<form action="#" th:action="@{/questions/addTagToQuestion}"
-              th:object="${tag}" method="post">
-
-        </form>-->
         <button type="submit" class="btn btn-primary col-2">Save</button>
         <hr>
         <a th:href="@{/questions/listQuestions}">Back to List</a>

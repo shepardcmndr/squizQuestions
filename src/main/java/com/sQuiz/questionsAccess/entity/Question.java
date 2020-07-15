@@ -85,14 +85,6 @@ public class Question {
     public Question() {
     }
 
-    public void removeTag(Tag tag) {
-        tags.remove(tag);
-    }
-
-    public void addTag(Tag tag) {
-        tags.add(tag);
-    }
-
     public List<Tag> getTags() {
         return tags;
     }

@@ -25,8 +25,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void saveTag(Tag tag) {
-        tagRepository.save(tag);
+    public Tag createTag(Tag tag) {
+        return tagRepository.save(tag);
     }
 
     @Override
@@ -47,6 +47,11 @@ public class TagServiceImpl implements TagService {
             tag = tagOptional.get();
         }
         return tag;
+    }
+
+    @Override
+    public Tag updateTag(Tag tag) {
+        return tagRepository.save(tag);
     }
 
     @Override

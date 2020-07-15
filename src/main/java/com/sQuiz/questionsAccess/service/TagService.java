@@ -12,13 +12,15 @@ import java.util.List;
 
 public interface TagService {
 
-    void saveTag(Tag tag);
+    Tag createTag(Tag tag);
 
     List<Tag> findAll();
 
     List<Tag> findByWord(String word);
 
     Tag findById(long id);
+
+    Tag updateTag(Tag tag);
 
     void deleteTagById(long id);
 }
