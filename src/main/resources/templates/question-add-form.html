@@ -29,15 +29,13 @@ Comments:
                   th:field="*{questionText}" placeholder="Question"></textarea>
         <textarea class="form-control mb-4 col-8" rows="5"
                   th:field="*{answer}" placeholder="Answer"></textarea>
-        <!--<input type="text" th:field="*{questionText}" placeholder="Question"
-               class="form-control mb-4 col-8">
-        <input type="text" th:field="*{answer}" placeholder="Answer"
-               class="form-control mb-4 col-8">-->
         <div class="form-group row">
             <label for="difficulty" class="col-sm-1 mr-4 col-form-label">Difficulty:</label>
             <input type="text" th:field="*{difficulty}" id="difficulty"
                    class="form-control mb-4 col-4">
         </div>
+        <textarea class="form-control mb-4 col-4"
+                  th:field="*{tags}" placeholder="Tags"></textarea>
         <button type="submit" class="btn btn-primary col-2">Save</button>
         <hr>
         <a th:href="@{/questions/listQuestions}">Back to List</a>

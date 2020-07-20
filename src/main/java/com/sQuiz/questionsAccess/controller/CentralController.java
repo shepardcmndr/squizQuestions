@@ -8,7 +8,6 @@ package com.sQuiz.questionsAccess.controller;
 
 import com.sQuiz.questionsAccess.entity.Question;
 import com.sQuiz.questionsAccess.service.QuestionService;
-import com.sQuiz.questionsAccess.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +19,10 @@ import java.util.List;
 @RequestMapping("/questions")
 public class CentralController {
 
-    TagService tagService;
     QuestionService questionService;
 
     @Autowired
-    public CentralController(TagService tagService, QuestionService questionService) {
-        this.tagService = tagService;
+    public CentralController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
@@ -60,6 +57,11 @@ public class CentralController {
         Question question = questionService.getQuestionByID(questionId);
         model.addAttribute("question", question);
 
+        return "question-add-form";
+    }
+
+    @PostMapping("/addTag")
+    public String addTag(@ModelAttribute (name = "question") Question question) {
         return "question-add-form";
     }
 

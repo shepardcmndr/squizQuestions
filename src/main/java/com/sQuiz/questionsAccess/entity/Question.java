@@ -12,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -46,13 +48,8 @@ public class Question {
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-                    CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "questions_tags",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<Tag> tags;
+    @Column(name = "tags")
+    private String tags;
 
     @Override
     public String toString() {
@@ -66,22 +63,41 @@ public class Question {
                 ']';
     }
 
-    public Question(String questionText, String answer, String picsAddress, byte difficulty, Date creationDate) {
+    public Question(long questionId,
+                    @Size(max = 300, message = "Question is too long (max - 300)") String questionText,
+                    @Size(max = 400, message = "Answer is too long (max - 400)") String answer,
+                    @Size(max = 256) String picsAddress, @Max(value = 128, message = "Value is too big (max - 128)")
+                    @Min(0) byte difficulty, Date creationDate, String tags) {
+        this.questionId = questionId;
         this.questionText = questionText;
         this.answer = answer;
         this.picsAddress = picsAddress;
         this.difficulty = difficulty;
         this.creationDate = creationDate;
+        this.tags = tags;
     }
 
     public Question() {
     }
 
-    public List<Tag> getTags() {
+    public void addTag(String tag) {
+        if (!tags.contains(tag)) {
+            tags += ", " + tag;
+        }
+    }
+
+    public List<String> getTagList() {
+        List<String> tagList;
+        String[] split = this.tags.split(", ");
+        tagList = Arrays.asList(split);
+        return tagList;
+    }
+
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
